@@ -1,19 +1,19 @@
-# Mchango wa Send Off - Lidya Shauri
+# Mchango wa Send Off - Lidya Shauri (Netlify + MongoDB)
 
-Stack: Node.js + Express + MongoDB (Mongoose). Hosting: Render.
+Hakuna server ya kuendesha. Frontend iko kwenye `public/`, na `netlify/functions/api.js` ni serverless function inayozungumza na MongoDB.
+Browser haiwezi kuunganishwa moja kwa moja na MongoDB (ingevujisha password), ndiyo maana function hii ipo.
 
-## Kuendesha kwenye kompyuta
-1. `npm install`
-2. Nakili `.env.example` kuwa `.env`, jaza `MONGODB_URI`, `ADMIN_USER`, `ADMIN_PASS`, `JWT_SECRET`
-3. `npm start` kisha fungua http://localhost:3000 (admin: /admin.html)
+## 1. MongoDB Atlas
+- Tengeneza cluster ya bure, database user, na Network Access ruhusu `0.0.0.0/0`.
+- Nakili connection string kwenye `MONGODB_URI`.
 
-## MongoDB Atlas
-Fungua cluster ya bure, tengeneza database user, ruhusu IP `0.0.0.0/0` (Network Access), nakili connection string kwenye `MONGODB_URI`.
+## 2. Netlify
+1. Weka folda hii kwenye GitHub, kisha Netlify > Add new site > Import from Git (build settings zinasomwa kutoka `netlify.toml`).
+2. Site configuration > Environment variables, ongeza: `MONGODB_URI`, `DB_NAME` (mfano lidya), `ADMIN_USER`, `ADMIN_PASS`, `JWT_SECRET`.
+3. Deploy. Link ya wageni: `https://JINA.netlify.app` - Admin: `https://JINA.netlify.app/admin.html`
 
-## Render
-1. Weka project kwenye GitHub, kisha Render > New > Blueprint (inasoma `render.yaml`) au Web Service (Build: `npm install`, Start: `node server.js`).
-2. Weka Environment Variables: `MONGODB_URI`, `ADMIN_USER`, `ADMIN_PASS`, `JWT_SECRET`.
-3. Link ya wageni: `https://JINA.onrender.com` - Admin: `https://JINA.onrender.com/admin.html`
+Kumbuka: drag-and-drop ya folda haitajenga function; tumia Git au Netlify CLI (`netlify deploy --prod`).
 
 ## Usalama
-Admin credentials ziko kwenye env tu. Data zote (RSVP, michango, takwimu) ziko kwenye MongoDB. Mchango hauhesabiwi hadi admin athibitishe (Approve).
+- Credentials za admin ziko kwenye env tu; data zote ziko MongoDB.
+- Mchango hauhesabiwi hadi admin athibitishe (Approve).
