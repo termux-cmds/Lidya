@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: lidya-send-off
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: ADMIN_USER
+        sync: false
+      - key: ADMIN_PASS
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
